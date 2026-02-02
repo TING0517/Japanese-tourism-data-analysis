@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本旅遊數據分析平台</title>
+    
+    <!-- Bootstrap 4 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f5f5dc;
+            color: #333;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        .hero-section {
+            padding: 60px 0;
+            text-align: center;
+            background: linear-gradient(rgba(229, 227, 157, 0.2), rgba(229, 227, 157, 0.4));
+            margin-bottom: 40px;
+            border-bottom: 1px solid #d4af37;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            border: none;
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .card-body {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background-color: #fcfbf0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: #d4af37;
+            font-size: 2rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .feature-card:hover .icon-wrapper {
+            background-color: #d4af37;
+            color: #fff;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .card-text {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .btn-custom {
+            background-color: transparent;
+            border: 2px solid #d4af37;
+            color: #d4af37;
+            padding: 8px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-custom:hover {
+            background-color: #d4af37;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #d4af37;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Include Navbar -->
+    {% include 'navbar.html' %}
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">日本旅遊全方位數據分析</h1>
+            <p class="hero-subtitle">
+                整合社交媒體聲量、關鍵詞趨勢與情感分析，為您的日本旅遊規劃提供數據驅動的洞察。
+                從熱門景點到地道美食，一手掌握最新旅遊動態。
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mb-5">
+        <div class="row">
+
+            <!-- Top GPE -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="feature-card">
+                    <div class="card-body">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h3 class="card-title">熱門旅遊地區</h3>
+                        <p class="card-text">探索日本最受歡迎的旅遊目的地與熱門景點排行。</p>
+                        <a href="{% url 'app_top_japan_gpe:home' %}" class="btn-custom">前往查看</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Keyword Analysis -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="feature-card">
+                    <div class="card-body">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <h3 class="card-title">關鍵詞分析</h3>
+                        <p class="card-text">深入挖掘旅遊關鍵詞的熱門度、關聯性與情感傾向。</p>
+                        <a href="{% url 'app_user_keyword:home' %}" class="btn-custom">開始分析</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Volume Observatory (Food) -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="feature-card">
+                    <div class="card-body">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3 class="card-title">美食聲量觀測</h3>
+                        <p class="card-text">拉麵、燒肉、壽司等人氣美食聲量大PK。</p>
+                        <a href="{% url 'namespace_food:home' %}" class="btn-custom">查看美食</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Volume Observatory (GPE) -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="feature-card">
+                    <div class="card-body">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-globe-asia"></i>
+                        </div>
+                        <h3 class="card-title">地區聲量觀測</h3>
+                        <p class="card-text">追蹤各大熱門旅遊地區的網路討論聲量變化。</p>
+                        <a href="{% url 'namespace_gpe:home' %}" class="btn-custom">觀測地區</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SCChen (Sakura?) -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="feature-card">
+                    <div class="card-body">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-fan"></i>
+                        </div>
+                        <h3 class="card-title">賞櫻聲量觀察</h3>
+                        <p class="card-text">掌握日本櫻花季的最新話題與熱門討論。</p>
+                        <a href="{% url 'app_scchen:home' %}" class="btn-custom">賞櫻情報</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommend -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="feature-card">
+                    <div class="card-body">
+                        <div class="icon-wrapper">
+                            <i class="far fa-newspaper"></i>
+                        </div>
+                        <h3 class="card-title">相似文章推薦</h3>
+                        <p class="card-text">基於 BERT 模型推薦與您興趣相關的旅遊文章。</p>
+                        <a href="{% url 'namespace_news_rcmd_bert:home' %}" class="btn-custom">文章推薦</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

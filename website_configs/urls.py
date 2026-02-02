@@ -17,9 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
+from django.views.generic import TemplateView
 
 
 urlpatterns = [
+    path('', TemplateView.as_view(template_name='index.html'), name='home'),
     path('topgpe/', include('app_top_japan_gpe.urls')),
     path('userkeyword/', include('app_user_keyword.urls')),
     path('userkeyword_assoc/', include('app_user_keyword_association.urls')),
