@@ -59,7 +59,7 @@ sqlparse
 stack_data @ file:///home/conda/feedstock_root/build_artifacts/stack_data_1733569443808/work
 sympy==1.14.0
 tokenizers==0.22.2
-torch==2.10.0
+torch --index-url https://download.pytorch.org/whl/cpu
 tornado @ file:///D:/bld/tornado_1765836387919/work
 tqdm==4.67.2
 traitlets @ file:///home/conda/feedstock_root/build_artifacts/traitlets_1733367359838/work
