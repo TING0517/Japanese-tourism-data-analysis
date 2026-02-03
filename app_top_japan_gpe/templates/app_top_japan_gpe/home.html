@@ -40,7 +40,8 @@
                             <div class="col-md-9">
                                 <label class="radio-inline"><input type="radio" value="地區" name="cateradio"
                                         checked>熱門旅遊地區</label>
-                                <label class="radio-inline"><input type="radio" value="景點" name="cateradio">熱門旅遊景點</label>
+                                <label class="radio-inline"><input type="radio" value="景點"
+                                        name="cateradio">熱門旅遊景點</label>
                             </div>
                         </div>
                         <!--form group-->
@@ -145,7 +146,7 @@
 
         $.ajax({
             type: "POST", //or GET
-            url: "http://127.0.0.1:8000/topgpe/api_get_topgpe/",
+            url: "/topgpe/api_get_topgpe/",
             data: {
                 "news_category": cate,
                 "topk": topk
@@ -162,7 +163,7 @@
                     'text': pair[0],
                     'size': pair[1]
                 }));
-        
+
                 // Draw word cloud
                 drawCloud(topWordToDraw, "#cloud");
                 console.log("topWordToDraw:", topWordToDraw);
