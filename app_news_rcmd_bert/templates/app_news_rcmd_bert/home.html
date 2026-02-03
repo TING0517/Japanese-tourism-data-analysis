@@ -1,167 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>相似文章推薦系統</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<head>
+  <title>相似文章推薦系統</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 
-    <!-- css style for displaying news content and the number of lines to be displayed -->
-    <style>
-      .only-some-lines-text {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 6;
-        /* number of lines to show */
-        -webkit-box-orient: vertical;
-      }
-    </style>
-  </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-  <body>
-    <div class="container">
-      <div class="row">
-        {% include 'navbar.html' %}
+  <!-- css style for displaying news content and the number of lines to be displayed -->
+  <style>
+    .only-some-lines-text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 6;
+      /* number of lines to show */
+      -webkit-box-orient: vertical;
+    }
+  </style>
+</head>
 
-        <!-- 大標題與任務說明 -->
-        <div class="col-lg-12">
-          <h2>相似文章推薦系統</h2>
-          <p>
-            (1)概念:取得每篇新聞的向量(768維度)表達，計算兩兩相似度，排序相似度，取得數篇相關新聞推薦。<br>
-            (2)新聞向量是BERT模型產生的，BERT語言模型是Google的一種NLP產品，它是由一種叫做Transformer(變形金剛、變壓器)的深度學習模型所訓練，訓練語料非常龐大:Wikipedia(約25億字)和Google的BooksCorpus(約8億字)，Google使用64個TPU訓練整整4天。<br>
-            (3)BERT的下游任務除了這裡的新聞推薦之外，還可以用在NLP理解的各種任務，包括我們下一次會提到的情緒分類、新聞分類等任務。<br>
-            (4)BERT目前已經發展成一個大家族，它可以讓電腦深入了解人類的語言與世界！🚀
-          </p>
-        </div>
-        <!-- 新聞類別與檢索區塊 -->
-        <div class="col-lg-12 mb-2">
-          <nav
-            class="navbar navbar-expand-lg navbar-light"
-            style="background-color: #E5E39D"
-          >
-            <a class="navbar-brand" href="/">文章搜搜</a>
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
+<body>
+  {% include 'navbar.html' %}
+  <div class="container">
+    <div class="row">
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item pl-2 mt-3">
-                  <div class="form-group row">
-                    <div class="col-md-12 select">
-                      <select
-                        id="cate_select"
-                        name="news_category"
-                        class="form-control"
-                      >
-                        <option>遊記</option>
-                        <option>食記</option>
-                        <option>住宿</option>
-                      </select>
-                    </div>
-                  </div>
-                </li>
 
-                <li class="nav-item active pl-2 mt-3">
-                  <div class="input-group">
-                    <input
-                      type="text"
-                      id="input_keywords"
-                      class="form-control"
-                      placeholder="輸入多個片段文字(and)"
-                    />
-                    <div class="input-group-append">
-                      <button
-                        type="button"
-                        class="btn btn-outline-success"
-                        id="btn_keyword_search"
-                      >
-                        文章檢索
-                      </button>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-
-              <!-- 插入右邊導覽選單 -->
-              {% include 'app_news_rcmd_bert/navbar-right.html' %}
-            </div>
-          </nav>
-        </div>
-
-        <!-- col-lg-6 .. card -->
-        <div class="col-lg-5 mb-2">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="h6 text-uppercase mb-0">文章瀏覽</h3>
-            </div>
-            <div class="card-body">
-              <div id="page_nav"></div>
-
-              <ul class="list-group" id="cate_news"></ul>
-            </div>
-          </div>
-        </div>
-        <!-- column -->
-
-        <div class="col-lg-7 mb-5">
-          <div class="row">
-            <!-- column col-lg-6 .. card -->
-            <div class="col-lg-12 mb-5">
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="h6 text-uppercase mb-0">文章內容</h3>
-                </div>
-                <div class="card-body">
-                  <!-- 顯示被點選的某一篇新聞詳細內容-->
-                  <ul id="news_content">
-                    點選文章標題，文章內容(部分內容)會顯示於此。
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- column -->
-
-            <!-- column col-lg- .. card -->
-            <div class="col-lg-12 mb-2">
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="h6 text-uppercase mb-0">
-                    猜你喜歡
-                  </h3>
-                </div>
-                <div class="card-body">
-                  <!-- 顯示被點選的某一篇新聞的相關3篇新聞推薦-->
-                  <ul id="related_news">
-                    你可能感興趣的文章會顯示在此
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- column -->
-          </div>
-          <!-- row -->
-        </div>
-        <!-- right content area -->
+      <!-- 大標題與任務說明 -->
+      <div class="col-lg-12">
+        <h2>相似文章推薦系統</h2>
+        <p>
+          (1)概念:取得每篇新聞的向量(768維度)表達，計算兩兩相似度，排序相似度，取得數篇相關新聞推薦。<br>
+          (2)新聞向量是BERT模型產生的，BERT語言模型是Google的一種NLP產品，它是由一種叫做Transformer(變形金剛、變壓器)的深度學習模型所訓練，訓練語料非常龐大:Wikipedia(約25億字)和Google的BooksCorpus(約8億字)，Google使用64個TPU訓練整整4天。<br>
+          (3)BERT的下游任務除了這裡的新聞推薦之外，還可以用在NLP理解的各種任務，包括我們下一次會提到的情緒分類、新聞分類等任務。<br>
+          (4)BERT目前已經發展成一個大家族，它可以讓電腦深入了解人類的語言與世界！🚀
+        </p>
       </div>
+      <!-- 新聞類別與檢索區塊 -->
+      <div class="col-lg-12 mb-2">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #E5E39D">
+          <a class="navbar-brand" href="/">文章搜搜</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item pl-2 mt-3">
+                <div class="form-group row">
+                  <div class="col-md-12 select">
+                    <select id="cate_select" name="news_category" class="form-control">
+                      <option>遊記</option>
+                      <option>食記</option>
+                      <option>住宿</option>
+                    </select>
+                  </div>
+                </div>
+              </li>
+
+              <li class="nav-item active pl-2 mt-3">
+                <div class="input-group">
+                  <input type="text" id="input_keywords" class="form-control" placeholder="輸入多個片段文字(and)" />
+                  <div class="input-group-append">
+                    <button type="button" class="btn btn-outline-success" id="btn_keyword_search">
+                      文章檢索
+                    </button>
+                  </div>
+                </div>
+              </li>
+            </ul>
+
+            <!-- 插入右邊導覽選單 -->
+            {% include 'app_news_rcmd_bert/navbar-right.html' %}
+          </div>
+        </nav>
+      </div>
+
+      <!-- col-lg-6 .. card -->
+      <div class="col-lg-5 mb-2">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="h6 text-uppercase mb-0">文章瀏覽</h3>
+          </div>
+          <div class="card-body">
+            <div id="page_nav"></div>
+
+            <ul class="list-group" id="cate_news"></ul>
+          </div>
+        </div>
+      </div>
+      <!-- column -->
+
+      <div class="col-lg-7 mb-5">
+        <div class="row">
+          <!-- column col-lg-6 .. card -->
+          <div class="col-lg-12 mb-5">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="h6 text-uppercase mb-0">文章內容</h3>
+              </div>
+              <div class="card-body">
+                <!-- 顯示被點選的某一篇新聞詳細內容-->
+                <ul id="news_content">
+                  點選文章標題，文章內容(部分內容)會顯示於此。
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- column -->
+
+          <!-- column col-lg- .. card -->
+          <div class="col-lg-12 mb-2">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="h6 text-uppercase mb-0">
+                  猜你喜歡
+                </h3>
+              </div>
+              <div class="card-body">
+                <!-- 顯示被點選的某一篇新聞的相關3篇新聞推薦-->
+                <ul id="related_news">
+                  你可能感興趣的文章會顯示在此
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- column -->
+        </div>
+        <!-- row -->
+      </div>
+      <!-- right content area -->
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
 
 <script>
@@ -211,7 +188,7 @@
         //查詢回傳新聞結果空的，直接return
         //在python中若是None,在js中用 == null檢查
         //在python中若是[],在js中用.length檢查長度
-        if ( items.length == 0) {
+        if (items.length == 0) {
           console.log("No articles!");
           $("#cate_news").html("<h3>No articles!<h3>");
           //target_div.innerHTML = '<h4>No data!<h4>';
@@ -288,7 +265,7 @@
 
   // Show the selected news content when the read_it event is triggered
   function show_selected_article_content_and_recommendation(item_id) {
-    
+
     //先清除顯示區
     clear_news_content();
 

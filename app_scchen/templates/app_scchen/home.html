@@ -1,100 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>賞櫻聲量觀察</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <!-- Favicons -->
-    <link href="static/img/favicon.png" rel="icon" />
-  </head>
+<head>
+  <title>賞櫻聲量觀察</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-  <body>
-    <div class="container">
-      <div class="row">
-        {% include 'navbar.html' %}
+  <!-- Favicons -->
+  <link href="static/img/favicon.png" rel="icon" />
+</head>
 
-        <div class="col-lg-12">
-          <h1>賞櫻聲量觀察</h1>
-          <p>了解櫻花盛開的時間範圍</p>
-        </div>
+<body>
+  {% include 'navbar.html' %}
+  <div class="container">
+    <div class="row">
 
-        <!-- 顯示區塊-->
-        <div class="col-lg-6 mb-2">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="h6 text-uppercase mb-0">
-                資料週期:2024/01/01~2024/06/09
-              </h3>
-            </div>
-            <div class="card-body">
-              <div class="row">
-                <!-- Leaderboard Container -->
-                <div class="container">
-                  <!-- Leaderboard Heading -->
-                  <h3>網路聲量</h3>
-                  <p>
-                    網路聲量是什麼？
-                    新聞報導有多少篇新聞提及這組關鍵字，聲量越高表示能見度越高。
-                  </p>
-                  <p>總篇數:有多少篇新聞提到; 總次數:在相關新聞中被提到多少次</p>
 
-                  <hr />
-                  <!-- Leaderboard Content -->
-                  <div id="share_of_voice"></div>
-                </div>
-                <!-- /.container -->
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- 區塊結束-->
-
-        <!-- 繪圖區塊-->
-        <div class="col-lg-6 mb-2">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="h6 text-uppercase mb-0">聲量分布情況</h3>
-            </div>
-            <div class="card-body">
-              <!-- description -->
-              <h3>依據新聞類別統計網路聲量</h3>
-              <p>在哪一類別的新聞中被報導最多篇?</p>
-              <hr />
-              <canvas id="bar_chart"></canvas>
-            </div>
-          </div>
-        </div>
-        <!-- 區塊結束-->
-
-        <!-- 顯示區塊-->
-        <div class="col-lg-12 mb-2">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="h6 text-uppercase mb-0">聲量變化</h3>
-            </div>
-            <div class="card-body">
-              <!-- description -->
-              <h3>依據時間顯示聲量的變化</h3>
-              <p>在哪個時間點被新聞報導最多?</p>
-              <hr />
-              <canvas id="line_chart"></canvas>
-            </div>
-          </div>
-        </div>
-        <!-- 區塊結束-->
+      <div class="col-lg-12">
+        <h1>賞櫻聲量觀察</h1>
+        <p>了解櫻花盛開的時間範圍</p>
       </div>
-      <!-- row結束-->
+
+      <!-- 顯示區塊-->
+      <div class="col-lg-6 mb-2">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="h6 text-uppercase mb-0">
+              資料週期:2024/01/01~2024/06/09
+            </h3>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <!-- Leaderboard Container -->
+              <div class="container">
+                <!-- Leaderboard Heading -->
+                <h3>網路聲量</h3>
+                <p>
+                  網路聲量是什麼？
+                  新聞報導有多少篇新聞提及這組關鍵字，聲量越高表示能見度越高。
+                </p>
+                <p>總篇數:有多少篇新聞提到; 總次數:在相關新聞中被提到多少次</p>
+
+                <hr />
+                <!-- Leaderboard Content -->
+                <div id="share_of_voice"></div>
+              </div>
+              <!-- /.container -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 區塊結束-->
+
+      <!-- 繪圖區塊-->
+      <div class="col-lg-6 mb-2">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="h6 text-uppercase mb-0">聲量分布情況</h3>
+          </div>
+          <div class="card-body">
+            <!-- description -->
+            <h3>依據新聞類別統計網路聲量</h3>
+            <p>在哪一類別的新聞中被報導最多篇?</p>
+            <hr />
+            <canvas id="bar_chart"></canvas>
+          </div>
+        </div>
+      </div>
+      <!-- 區塊結束-->
+
+      <!-- 顯示區塊-->
+      <div class="col-lg-12 mb-2">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="h6 text-uppercase mb-0">聲量變化</h3>
+          </div>
+          <div class="card-body">
+            <!-- description -->
+            <h3>依據時間顯示聲量的變化</h3>
+            <p>在哪個時間點被新聞報導最多?</p>
+            <hr />
+            <canvas id="line_chart"></canvas>
+          </div>
+        </div>
+      </div>
+      <!-- 區塊結束-->
     </div>
-    <!-- container結束-->
-  </body>
+    <!-- row結束-->
+  </div>
+  <!-- container結束-->
+</body>
+
 </html>
 <!-- jQuery指令用到的js-->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
@@ -141,11 +141,11 @@
   // 加上 safe 是不讓Django做一些特殊符號的代號轉換(XSS安全機制)，否則我們拿到的資料顯示會有錯誤
 
   const freqByDate = {{ freqByDate| safe }}; // for line chart
-  const freqByCate = {{freqByCate|safe}}; // for line chart
-  const news_category = {{category|safe}}; // for bar chart
-  const num_occurrence = {{num_occurrence|safe}};
-  const num_frequency = {{num_frequency|safe}};
-  const photo ="https://res-4.cloudinary.com/jnto/image/upload/w_750,h_750,c_fill,f_auto,fl_lossy,q_auto/v1/media/filer_public/c8/d5/c8d507c0-8a3b-4c87-b482-756ffca03e66/00cover_chebtu";
+  const freqByCate = {{ freqByCate| safe}}; // for line chart
+  const news_category = {{ category| safe}}; // for bar chart
+  const num_occurrence = {{ num_occurrence| safe}};
+  const num_frequency = {{ num_frequency| safe}};
+  const photo = "https://res-4.cloudinary.com/jnto/image/upload/w_750,h_750,c_fill,f_auto,fl_lossy,q_auto/v1/media/filer_public/c8/d5/c8d507c0-8a3b-4c87-b482-756ffca03e66/00cover_chebtu";
 
   //console.log(num_occurrence);
   //console.log(num_frequency);
@@ -237,7 +237,7 @@
       .getElementById("line_chart")
       .getContext("2d");
 
-      const freq_values = freqByDate;
+    const freq_values = freqByDate;
 
     const myoptions = {
       type: "line",

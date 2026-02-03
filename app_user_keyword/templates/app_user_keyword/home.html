@@ -13,9 +13,10 @@
 </head>
 
 <body>
+    {% include 'navbar.html' %}
     <div class="container">
         <div class="row">
-            {% include 'navbar.html' %}
+
             <div class="col-lg-12">
                 <h1>關鍵詞熱門度分析</h1>
                 <p>可以針對你輸入的個別關鍵詞進行熱門程度分析</p>
@@ -41,8 +42,9 @@
                             <label class="col-sm-3 form-control-label">條件</label>
 
                             <div class="col-md-9 radio mb-3">
-                                <label class="radio-inline"><input type="radio" value="and" name="condradio" checked>and</label>
-                                <label class="radio-inline"><input type="radio" value="or" name="condradio" >or</label>
+                                <label class="radio-inline"><input type="radio" value="and" name="condradio"
+                                        checked>and</label>
+                                <label class="radio-inline"><input type="radio" value="or" name="condradio">or</label>
                             </div>
                         </div>
 
@@ -60,11 +62,12 @@
                             <label class="col-md-3 form-control-label">最近多少周?</label>
                             <div class="col-md-9">
                                 <label class="radio-inline"><input type="radio" value="2" name="wkradio">2</label>
-                                <label class="radio-inline"><input type="radio" value="4" name="wkradio" >4</label>
-                                <label class="radio-inline"><input type="radio" value="8" name="wkradio" >8</label>
+                                <label class="radio-inline"><input type="radio" value="4" name="wkradio">4</label>
+                                <label class="radio-inline"><input type="radio" value="8" name="wkradio">8</label>
                                 <label class="radio-inline"><input type="radio" value="12" name="wkradio">12</label>
                                 <label class="radio-inline"><input type="radio" value="16" name="wkradio">16</label>
-                                <label class="radio-inline"><input type="radio" value="22" name="wkradio" checked>22</label>
+                                <label class="radio-inline"><input type="radio" value="22" name="wkradio"
+                                        checked>22</label>
                                 <small class="form-text text-muted">以最新資料時間為準，往前推多少周?</small>
                             </div>
                         </div>
@@ -196,10 +199,10 @@
         }); //ajax
     } //call_ajax()
 
-    
+
     //(不建議這樣寫)宣告line_chart變數在此，它是全域變數，初值為null，畫圖函數在繪畫新圖時會先檢查這個變數，若是不為null，表示已經有舊圖存在，會先清除(destroy)這個line_chart變數
     //let line_chart = null; 
-    
+
     function showtimechart(data_key_time_freq) {
 
         //取得繪圖元件
@@ -244,15 +247,15 @@
             }
         };
 
-        
+
         // 檢查line_chart變數是否存在，如果存在，表示已經有之前畫的圖，必須要先清除之後，再畫新的圖。否則會有新舊圖重疊現象
         //console.log(line_chart); 
         //if (line_chart) 
         //    line_chart.destroy();
-        
+
         //用以下這種方式檢查與清除舊圖。window指的是這個頁面，這個頁面有很多變數存在，檢查line_chart是否存在，若有存在，必須要先清除之後，再畫新的圖。否則會有新舊圖重疊現象
         if (window.line_chart) {
-           line_chart.destroy();
+            line_chart.destroy();
         }
 
         // 畫一張新圖(產生一個圖物件變數名稱為line_chart)

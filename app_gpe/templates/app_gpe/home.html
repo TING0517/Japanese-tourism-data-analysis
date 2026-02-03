@@ -1,100 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>日本熱門旅遊地區聲量觀測站</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <!-- Favicons -->
-    <link href="static/img/favicon.png" rel="icon" />
-  </head>
+<head>
+  <title>日本熱門旅遊地區聲量觀測站</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-  <body>
-    <div class="container">
-      <div class="row">
-          
-        {% include 'navbar.html' %}
+  <!-- Favicons -->
+  <link href="static/img/favicon.png" rel="icon" />
+</head>
 
-        <div class="col-lg-12">
-          <h1>日本熱門旅遊地區聲量觀測站</h1>
-          <h3>東京、京都、大阪人氣聲量大PK</h3>
-        </div>
+<body>
+  {% include 'navbar.html' %}
+  <div class="container">
+    <div class="row">
 
-        <!-- 顯示區塊-->
-        <div class="col-lg-6 mb-2">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="h6 text-uppercase mb-0">
-                排行榜(資料週期:資料截止時間的前4周)
-              </h3>
-            </div>
-            <div class="card-body">
-              <div class="row">
-                <!-- Leaderboard Container -->
-                <div class="container">
-                  <!-- Leaderboard Heading -->
-                  <h3>網路聲量</h3>
-                  <p>
-                    網路聲量是什麼？
-                    計算新聞報導提及的文章則數，聲量越高表示能見度越高。<br />
-                    感染力、影響力、正向力、或溫度:指的是正負面情緒新聞篇數所占之百分比。
-                  </p>
-                  <hr />
-                  <!-- Leaderboard Content -->
-                  <div id="leaderboardDisplay"></div>
-                </div>
-                <!-- /.container -->
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- 區塊結束-->
 
-        <!-- 繪圖區塊-->
-        <div class="col-lg-6 mb-2">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="h6 text-uppercase mb-0">聲量分布情況</h3>
-            </div>
-            <div class="card-body">
-              <!-- description -->
-              <h3>依據看板類別統計網路聲量</h3>
-              <p>在哪一類別的文章中被提及最多篇?</p>
-              <hr />
-              <canvas id="pkBarChart"></canvas>
-            </div>
-          </div>
-        </div>
-        <!-- 區塊結束-->
 
-        <!-- 顯示區塊-->
-        <div class="col-lg-12 mb-2">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="h6 text-uppercase mb-0">聲量變化比較</h3>
-            </div>
-            <div class="card-body">
-              <!-- description -->
-              <h3>依據時間顯示總聲量的變化</h3>
-              <p>在哪個時間點被新聞報導最多?</p>
-              <hr />
-              <canvas id="pkLineChart"></canvas>
-            </div>
-          </div>
-        </div>
-        <!-- 區塊結束-->
+      <div class="col-lg-12">
+        <h1>日本熱門旅遊地區聲量觀測站</h1>
+        <h3>東京、京都、大阪人氣聲量大PK</h3>
       </div>
-      <!-- row結束-->
+
+      <!-- 顯示區塊-->
+      <div class="col-lg-6 mb-2">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="h6 text-uppercase mb-0">
+              排行榜(資料週期:資料截止時間的前4周)
+            </h3>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <!-- Leaderboard Container -->
+              <div class="container">
+                <!-- Leaderboard Heading -->
+                <h3>網路聲量</h3>
+                <p>
+                  網路聲量是什麼？
+                  計算新聞報導提及的文章則數，聲量越高表示能見度越高。<br />
+                  感染力、影響力、正向力、或溫度:指的是正負面情緒新聞篇數所占之百分比。
+                </p>
+                <hr />
+                <!-- Leaderboard Content -->
+                <div id="leaderboardDisplay"></div>
+              </div>
+              <!-- /.container -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 區塊結束-->
+
+      <!-- 繪圖區塊-->
+      <div class="col-lg-6 mb-2">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="h6 text-uppercase mb-0">聲量分布情況</h3>
+          </div>
+          <div class="card-body">
+            <!-- description -->
+            <h3>依據看板類別統計網路聲量</h3>
+            <p>在哪一類別的文章中被提及最多篇?</p>
+            <hr />
+            <canvas id="pkBarChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <!-- 區塊結束-->
+
+      <!-- 顯示區塊-->
+      <div class="col-lg-12 mb-2">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="h6 text-uppercase mb-0">聲量變化比較</h3>
+          </div>
+          <div class="card-body">
+            <!-- description -->
+            <h3>依據時間顯示總聲量的變化</h3>
+            <p>在哪個時間點被新聞報導最多?</p>
+            <hr />
+            <canvas id="pkLineChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <!-- 區塊結束-->
     </div>
-    <!-- container結束-->
-  </body>
+    <!-- row結束-->
+  </div>
+  <!-- container結束-->
+</body>
+
 </html>
 
 <!-- jQuery指令用到的js-->
@@ -247,7 +247,7 @@
       for (let j = 0; j <= 2; j++) {
         senti_str += "<span class={0}>{1}%</span>".format(
           textColor[j],
-          list_sentiInfo[i][j] 
+          list_sentiInfo[i][j]
         );
       }
 
