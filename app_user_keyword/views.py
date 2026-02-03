@@ -12,7 +12,8 @@ from datetime import datetime, timedelta
 def load_df_data():
     # df is a global variable
     global  df
-    df = pd.read_csv('app_user_keyword/dataset/cna_news_200_preprocessed.csv', sep='|')
+    CSV_URL ="https://raw.githubusercontent.com/TING0517/tourism-data-storage/main/app_user_keyword_cna_news_200_preprocessed.csv"
+    df = pd.read_csv(CSV_URL, sep='|')
 
 # We should reload df when necessary
 load_df_data() 

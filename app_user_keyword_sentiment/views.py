@@ -9,7 +9,8 @@ from django.views.decorators.csrf import csrf_exempt
 def load_df_data_v1():
     global df # global variable
     # df = pd.read_csv('app_user_keyword/dataset/cna_news_200_preprocessed.csv',sep='|')
-    df = pd.read_csv('app_user_keyword_sentiment/dataset/news_dataset_preprocessed_for_django.csv',sep='|')
+    CSV_URL="https://raw.githubusercontent.com/TING0517/tourism-data-storage/refs/heads/main/app_user_keyword_sentiment_news_dataset_preprocessed_for_django.csv"
+    df = pd.read_csv(CSV_URL,sep='|')
 
 # (2) Load news data--approach 2 跟隔壁的app借用df
 # import from app_user_keyword.views and use df later

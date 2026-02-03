@@ -7,8 +7,8 @@ from django.views.decorators.csrf import csrf_exempt
 # load data
 def load_data_topgpe():
     # read df
-    df_topgpe = pd.read_csv(
-        'app_top_japan_gpe/dataset/news_top_person_by_category_via_ner.csv')
+    CSV_URL ="https://raw.githubusercontent.com/TING0517/tourism-data-storage/refs/heads/main/app_top_japan_gpe_news_top_person_by_category_via_ner.csv"
+    df_topgpe = pd.read_csv(CSV_URL)
     # refresh data
     global data # make data global. It can be used everywhere.
     data = {}

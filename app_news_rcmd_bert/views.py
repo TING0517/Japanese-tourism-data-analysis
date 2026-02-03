@@ -10,9 +10,10 @@ from datetime import datetime, timedelta
 
 # (2) Load news data--approach 2
 def load_df_data_v1():
-    
-    global df # global variable
-    df = pd.read_csv('app_news_rcmd_bert/dataset/news_dataset_preprocessed_for_django.csv',sep='|')
+    global df 
+    # global variable
+    CSV_URL ="https://raw.githubusercontent.com/TING0517/tourism-data-storage/main/app_news_rcmd_bert_news_dataset_preprocessed_for_django.csv"
+    df = pd.read_csv(CSV_URL,sep='|')
     global news_sim_martrix
     news_sim_martrix = np.load('app_news_rcmd_bert/dataset/news_sim_martrix.npy')
     global item_id2idx

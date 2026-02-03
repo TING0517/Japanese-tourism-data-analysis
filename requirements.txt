@@ -3,7 +3,8 @@ django-cors-headers
 pandas
 numpy
 matplotlib
-# transformers
+transformers
+scikit-learn
 torch --index-url https://download.pytorch.org/whl/cpu
 gunicorn
 whitenoise

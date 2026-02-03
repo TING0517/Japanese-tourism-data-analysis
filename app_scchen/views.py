@@ -4,7 +4,8 @@ import pandas as pd
 
 def load_data_scchen():
     # Read data from csv file
-    df_data = pd.read_csv('app_scchen/dataset/data.csv',sep=',')
+    CSV_URL ="https://raw.githubusercontent.com/TING0517/tourism-data-storage/refs/heads/main/app_scchen_data.csv"
+    df_data = pd.read_csv(CSV_URL,sep=',')
     global response
     response = dict(list(df_data.values))
     del df_data

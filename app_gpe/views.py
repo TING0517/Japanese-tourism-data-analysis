@@ -5,7 +5,8 @@ from django.views.decorators.csrf import csrf_exempt
 
 def load_data_pk():
     # Read data from csv file
-    df_data_pk = pd.read_csv('app_gpe/dataset/pk.csv')
+    CSV_URL ="https://raw.githubusercontent.com/TING0517/tourism-data-storage/refs/heads/main/app_gpe_pk.csv"
+    df_data_pk = pd.read_csv(CSV_URL)
     
     global data
     data={}
