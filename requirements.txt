@@ -5,7 +5,7 @@ numpy
 matplotlib
 transformers
 scikit-learn
-torch --index-url https://download.pytorch.org/whl/cpu
+torch
 gunicorn
 whitenoise
 asttokens
