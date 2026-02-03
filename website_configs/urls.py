@@ -26,7 +26,7 @@ urlpatterns = [
     path('userkeyword/', include('app_user_keyword.urls')),
     path('userkeyword_assoc/', include('app_user_keyword_association.urls')),
     path('userkeyword_senti/', include('app_user_keyword_sentiment.urls')),
-    path('sentiment/', include('app_sentiment_bert.urls')),
+    # path('sentiment/', include('app_sentiment_bert.urls')),
     path('gpe/', include('app_gpe.urls')),
     path('food/', include('app_food.urls')),
     path('scchen/', include('app_scchen.urls')),

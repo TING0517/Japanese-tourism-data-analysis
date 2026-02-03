@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     # App CORS跨域資源共享App
     'corsheaders',
     'app_news_rcmd_bert',
-    'app_sentiment_bert',
+    # 'app_sentiment_bert',
 ]
 
 MIDDLEWARE = [
